@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 export class Categories extends Component {
   render() {
-    const categories = this.props.categories;
-    const { selectedCategory, onCategoryChange } = this.props;
+    const { selectedCategory, onCategoryChange, categories } = this.props;
 
     return categories.map(({ id, name }) => (
       <div key={id} data-testid="category">

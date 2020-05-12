@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 
+const searchBox = () => (
+  <div>
+    <input
+      id="search-input"
+      className="form-control"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+      data-testid="query-input"
+    />
+    <button
+      className="btn btn-danger"
+      type="submit"
+      data-testid="query-button"
+    >
+      Search
+    </button>
+  </div>
+);
+
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
@@ -39,23 +59,7 @@ export default class ProductList extends Component {
         <div className="row">
           <div className="col-3">{this.categoriesList()}</div>
           <div className="col">
-            <div>
-              <input
-                id="search-input"
-                className="form-control"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                data-testid="query-input"
-              />
-              <button
-                className="btn btn-danger"
-                type="submit"
-                data-testid="query-button"
-              >
-                Search
-              </button>
-            </div>
+            {searchBox()}
             <Link to="/shoppingCart" data-testid="shopping-cart-button">
               Carrinho de compras
             </Link>

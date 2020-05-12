@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 export class Product extends Component {
   render() {
     console.log(this.props);
-    const {
-      product: { title, price, thumbnail },
-    } = this.props;
+    const { product: { title, price, thumbnail } } = this.props;
     return (
       <div className="col mb-3">
         <div className="card" style={{ width: '18rem' }}>

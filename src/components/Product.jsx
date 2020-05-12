@@ -5,7 +5,7 @@ export class Product extends Component {
     console.log(this.props);
     const { product: { title, price, thumbnail } } = this.props;
     return (
-      <div className="col mb-3">
+      <div className="col mb-3" data-testid="product">
         <div className="card" style={{ width: '18rem' }}>
           <img
             src={thumbnail}

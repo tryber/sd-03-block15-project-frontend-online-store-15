@@ -44,6 +44,7 @@ export default class MainPage extends Component {
 
   categoriesList() {
     const categories = this.state.categories;
+
     return categories.map(({ id, name }) => (
       <div key={id} data-testid="category">
         <input type="radio" id={id} value={id} name="categories" />

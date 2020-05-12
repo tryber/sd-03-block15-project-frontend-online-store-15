@@ -3,28 +3,6 @@ import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 
 export default class ProductList extends Component {
-  static searchBox() {
-    return (
-      <div>
-        <input
-          id="search-input"
-          className="form-control"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          data-testid="query-input"
-        />
-        <button
-          className="btn btn-danger"
-          type="submit"
-          data-testid="query-button"
-        >
-          Search
-        </button>
-      </div>
-    );
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +10,7 @@ export default class ProductList extends Component {
       loading: true,
     };
     this.categoriesList = this.categoriesList.bind(this);
-    this.searchBox = this.searchBox.bind(this);
+    // this.searchBox = this.searchBox.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +30,28 @@ export default class ProductList extends Component {
         <label htmlFor={id}>{name}</label>
       </div>
     ));
+  }
+
+  searchBox() {
+    return (
+      <div>
+        <input
+          id="search-input"
+          className="form-control"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          data-testid="query-input"
+        />
+        <button
+          className="btn btn-danger"
+          type="submit"
+          data-testid="query-button"
+        >
+          Search
+        </button>
+      </div>
+    );
   }
 
   render() {

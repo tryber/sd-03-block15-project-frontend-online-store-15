@@ -6,6 +6,7 @@ export class ProductList extends Component {
     const { products } = this.props;
 
     if (products.results) {
+      if (products.results.length === 0) return <p>Nenhum Produto foi encontrado</p>;
       return (
         <div className="row row-cols-1 row-cols-md-2">
           {products.results.map((product) => (

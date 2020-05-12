@@ -14,7 +14,6 @@ export default class MainPage extends Component {
       callAPI: false,
       searchText: '',
       products: [],
-      category: '',
     };
     this.searchProducts = this.searchProducts.bind(this);
   }

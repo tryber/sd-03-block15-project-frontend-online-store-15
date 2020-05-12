@@ -1,35 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
+import SearchBox from '../components/SearchBox';
+import ProductList from '../components/ProductList';
 
-const searchBox = () => (
-  <div>
-    <input
-      id="search-input"
-      className="form-control"
-      type="search"
-      placeholder="Search"
-      aria-label="Search"
-      data-testid="query-input"
-    />
-    <button
-      className="btn btn-danger"
-      type="submit"
-      data-testid="query-button"
-    >
-      Search
-    </button>
-  </div>
-);
-
-export default class ProductList extends Component {
+export default class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categories: [],
       loading: true,
+      callAPI: false,
+      searchText: '',
+      products: [],
     };
     this.categoriesList = this.categoriesList.bind(this);
+    this.searchProducts = this.searchProducts.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +25,21 @@ export default class ProductList extends Component {
         loading: false,
       });
     });
+  }
+
+  componentDidUpdate() {
+    const { callAPI, searchText } = this.state;
+    if (callAPI) {
+      api.getProductsFromCategoryAndQuery('MLB5672', searchText)
+        .then((products) => this.setState({
+          products,
+          callAPI: false,
+        }));
+    }
+  }
+
+  searchProducts() {
+    this.setState({ callAPI: true });
   }
 
   categoriesList() {
@@ -52,20 +53,22 @@ export default class ProductList extends Component {
   }
 
   render() {
-    const { loading } = this.state;
+    const { loading, searchText, products } = this.state;
     if (loading) return <p>loading</p>;
     return (
       <div className="container">
         <div className="row">
           <div className="col-3">{this.categoriesList()}</div>
           <div className="col">
-            {searchBox()}
+            <SearchBox
+              handleClick={() => this.searchProducts}
+              searchText={searchText}
+              onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
+            />
             <Link to="/shoppingCart" data-testid="shopping-cart-button">
               Carrinho de compras
             </Link>
-            <p data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>
+            <ProductList products={products} />
           </div>
         </div>
       </div>

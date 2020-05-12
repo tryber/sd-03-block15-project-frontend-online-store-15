@@ -10,7 +10,6 @@ export default class ProductList extends Component {
       loading: true,
     };
     this.categoriesList = this.categoriesList.bind(this);
-    // this.searchBox = this.searchBox.bind(this);
   }
 
   componentDidMount() {
@@ -32,28 +31,6 @@ export default class ProductList extends Component {
     ));
   }
 
-  searchBox() {
-    return (
-      <div>
-        <input
-          id="search-input"
-          className="form-control"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          data-testid="query-input"
-        />
-        <button
-          className="btn btn-danger"
-          type="submit"
-          data-testid="query-button"
-        >
-          Search
-        </button>
-      </div>
-    );
-  }
-
   render() {
     const { loading } = this.state;
     if (loading) return <p>loading</p>;
@@ -62,7 +39,23 @@ export default class ProductList extends Component {
         <div className="row">
           <div className="col-3">{this.categoriesList()}</div>
           <div className="col">
-            {this.searchBox()}
+            <div>
+              <input
+                id="search-input"
+                className="form-control"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                data-testid="query-input"
+              />
+              <button
+                className="btn btn-danger"
+                type="submit"
+                data-testid="query-button"
+              >
+                Search
+              </button>
+            </div>
             <Link to="/shoppingCart" data-testid="shopping-cart-button">
               Carrinho de compras
             </Link>

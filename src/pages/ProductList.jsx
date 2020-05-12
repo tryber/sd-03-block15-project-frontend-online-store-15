@@ -23,14 +23,12 @@ export default class ProductList extends Component {
 
   categoriesList() {
     const categories = this.state.categories;
-    return categories.map(({ id, name }) => {
-      return (
-        <div key={id} data-testid="category">
-          <input type="radio" id={id} value={id} name="categories" />
-          <label htmlFor={id}>{name}</label>
-        </div>
-      );
-    });
+    return categories.map(({ id, name }) => (
+      <div key={id} data-testid="category">
+        <input type="radio" id={id} value={id} name="categories" />
+        <label htmlFor={id}>{name}</label>
+      </div>
+    ));
   }
 
   render() {

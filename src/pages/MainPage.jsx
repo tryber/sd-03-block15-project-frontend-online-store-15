@@ -11,10 +11,8 @@ export default class MainPage extends Component {
     this.state = {
       categories: [],
       selectedCategory: '',
-      callAPI: false,
       searchText: '',
       products: [],
-      category: '',
     };
     this.searchProducts = this.searchProducts.bind(this);
   }
@@ -25,19 +23,11 @@ export default class MainPage extends Component {
     });
   }
 
-  componentDidUpdate() {
-    const { callAPI, searchText, selectedCategory } = this.state;
-    if (callAPI) {
-      api.getProductsFromCategoryAndQuery(selectedCategory, searchText)
-        .then((products) => this.setState({
-          products,
-          callAPI: false,
-        }));
-    }
-  }
-
   searchProducts() {
-    this.setState({ callAPI: true });
+    const { searchText, selectedCategory } = this.state;
+    api
+      .getProductsFromCategoryAndQuery(selectedCategory, searchText)
+      .then((products) => this.setState({ products }));
   }
 
   render() {
@@ -49,7 +39,10 @@ export default class MainPage extends Component {
             <Categories
               categories={categories}
               selectedCategory={selectedCategory}
-              onCategoryChange={(e) => this.setState({ selectedCategory: e.target.value })}
+              onCategoryChange={async (e) => {
+                await this.setState({ selectedCategory: e.target.value });
+                this.searchProducts();
+              }}
             />
           </div>
           <div className="col">

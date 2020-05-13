@@ -5,8 +5,9 @@ export class Categories extends Component {
     const { selectedCategory, onCategoryChange, categories } = this.props;
 
     return categories.map(({ id, name }) => (
-      <div key={id} data-testid="category">
+      <div key={id}>
         <input
+          data-testid="category"
           type="radio"
           id={id}
           value={id}

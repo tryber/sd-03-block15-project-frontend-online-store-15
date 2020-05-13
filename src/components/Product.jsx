@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 export class Product extends Component {
   render() {
-    const { product: { title, price, thumbnail, id } } = this.props;
+    console.log(this.props);
+    const {
+      product: { title, price, thumbnail, id },
+    } = this.props;
     return (
       <div className="col mb-3" data-testid="product">
         <div className="card text-center" style={{ width: '18rem' }}>
@@ -18,7 +21,9 @@ export class Product extends Component {
               R$
               {price}
             </p>
-            <Link to={`/product/${id}`} className="btn btn-primary">Detalhes</Link>
+            <Link to={`/product/${id}`} className="btn btn-danger" data-testid="product-detail-link">
+              Detalhes
+            </Link>
           </div>
         </div>
       </div>

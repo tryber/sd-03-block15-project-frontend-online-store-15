@@ -1,36 +1,13 @@
 import React, { Component } from 'react';
-import * as api from '../services/api';
 
 export class ProductDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      product: '',
-      loading: true,
-    };
-  }
-
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    api.getProductFromId(id).then((product) =>
-      this.setState({
-        product,
-        loading: false,
-      })
-    );
-  }
-
   render() {
-    const {
-      product: { pictures, title, price },
-      loading,
-    } = this.state;
-    if (loading) return <p>Loading</p>;
+    const { location: {state: {price, thumbnail, title}} } = this.props;
     return (
       <div className="card mb-3" style={{ maxWidth: '540px' }}>
         <div className="row no-gutters">
           <div className="col-md-4">
-            <img src={pictures[0].url} className="card-img" alt="..." />
+            <img src={thumbnail} className="card-img" alt="..." />
           </div>
           <div className="col-md-8">
             <div className="card-body">

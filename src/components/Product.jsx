@@ -21,7 +21,11 @@ export class Product extends Component {
               R$
               {price}
             </p>
-            <Link to={`/product/${id}`} className="btn btn-danger" data-testid="product-detail-link">
+            <Link
+              to={{ pathname: `/product/${id}`, state: { title, thumbnail, price } }}
+              className="btn btn-danger"
+              data-testid="product-detail-link"
+            >
               Detalhes
             </Link>
           </div>

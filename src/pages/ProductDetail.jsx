@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export class ProductDetail extends Component {
   render() {
-    const { location: {state: {price, thumbnail, title}} } = this.props;
+    const { location: { state: { price, thumbnail, title } } } = this.props;
     return (
       <div className="card mb-3" style={{ maxWidth: '540px' }}>
         <div className="row no-gutters">
@@ -14,7 +14,9 @@ export class ProductDetail extends Component {
               <h5
                 className="card-title"
                 data-testid="product-detail-name"
-              >{`${title} - R$${price}`}</h5>
+              >
+                {`${title} - R$${price}`}
+              </h5>
               <p className="card-text">
                 This is a wider card with supporting text below as a natural
                 lead-in to additional content. This content is a little bit

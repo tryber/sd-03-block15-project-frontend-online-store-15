@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export class Product extends Component {
   render() {
-    console.log(this.props);
+    const { addToCart } = this.props;
     const { product: { title, price, thumbnail, id } } = this.props;
     return (
       <div className="col mb-3" data-testid="product">
@@ -21,11 +21,18 @@ export class Product extends Component {
             </p>
             <Link
               to={{ pathname: `/product/${id}`, state: { title, thumbnail, price } }}
-              className="btn btn-danger"
+              className="btn btn-link"
               data-testid="product-detail-link"
             >
               Detalhes
             </Link>
+            <input
+              data-testid="product-add-to-cart"
+              className="btn btn-link"
+              value="Adicionar ao Carrinho"
+              type="button"
+              onClick={() => addToCart(id, title, price)}
+            />
           </div>
         </div>
       </div>

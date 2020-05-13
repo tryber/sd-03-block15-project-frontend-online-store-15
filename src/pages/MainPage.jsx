@@ -13,8 +13,10 @@ export default class MainPage extends Component {
       selectedCategory: '',
       searchText: '',
       products: [],
+      cartItems: [],
     };
     this.searchProducts = this.searchProducts.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -30,8 +32,23 @@ export default class MainPage extends Component {
       .then((products) => this.setState({ products }));
   }
 
+  addToCart(id, title, price) {
+    const { cartItems } = this.state;
+    const itemIndex = cartItems.findIndex((item) => item.id === id);
+    if (itemIndex !== -1) {
+      const updatedCart = cartItems;
+      updatedCart[itemIndex].quantity += 1;
+      this.setState({ cartItems: updatedCart });
+    } else {
+      this.setState({
+        cartItems: [...cartItems,
+          { title, id, price, quantity: 1 }],
+      });
+    }
+  }
+
   render() {
-    const { searchText, products, categories, selectedCategory } = this.state;
+    const { searchText, products, categories, selectedCategory, cartItems } = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -51,10 +68,10 @@ export default class MainPage extends Component {
               searchText={searchText}
               onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
             />
-            <Link to="/shoppingCart" data-testid="shopping-cart-button">
+            <Link to={{ pathname: '/shoppingCart', state: { cartItems } }} data-testid="shopping-cart-button">
               Carrinho de compras
             </Link>
-            <ProductList products={products} />
+            <ProductList products={products} addToCart={this.addToCart} />
           </div>
         </div>
       </div>

@@ -49,9 +49,7 @@ export default class MainPage extends Component {
             <SearchBox
               handleClick={() => this.searchProducts}
               searchText={searchText}
-              onSearchTextChange={(e) =>
-                this.setState({ searchText: e.target.value })
-              }
+              onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
             />
             <Link to="/shoppingCart" data-testid="shopping-cart-button">
               Carrinho de compras

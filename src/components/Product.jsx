@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 export class Product extends Component {
   render() {
     console.log(this.props);
-    const {
-      product: { title, price, thumbnail, id },
-    } = this.props;
+    const { product: { title, price, thumbnail, id } } = this.props;
     return (
       <div className="col mb-3" data-testid="product">
         <div className="card text-center" style={{ width: '18rem' }}>

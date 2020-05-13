@@ -26,9 +26,9 @@ export class ShoppingCart extends Component {
         {cartItems.map((item, index) => (
           <tr key={item.id}>
             <th scope="row">{index}</th>
-            <td data-testid="product-detail-name">{item.title}</td>
+            <td data-testid="shopping-cart-product-name">{item.title}</td>
             <td>{item.price}</td>
-            <td>{item.quantity}</td>
+            <td data-testid="shopping-cart-product-quantity">{item.quantity}</td>
           </tr>
         ))}
       </tbody>

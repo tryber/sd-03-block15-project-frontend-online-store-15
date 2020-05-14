@@ -9,6 +9,7 @@ export class Product extends Component {
 
   addCartInput() {
     const { addToCart } = this.props;
+    const { product: { title, price, id } } = this.props;
     return (
       <input
         data-testid="product-add-to-cart"

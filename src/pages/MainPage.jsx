@@ -47,6 +47,8 @@ export default class MainPage extends Component {
     }
   }
 
+  updatedCart
+
   render() {
     const { searchText, products, categories, selectedCategory, cartItems } = this.state;
     return (

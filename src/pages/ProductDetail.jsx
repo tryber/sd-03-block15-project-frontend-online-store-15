@@ -4,9 +4,8 @@ import AddRemoveCartItem from '../components/AddRemoveCartItem';
 export class ProductDetail extends Component {
   render() {
     const {
-      location: {
-        state: { price, thumbnail, title },
-      },
+      location: { state: { price, thumbnail, title } },
+      handleAddCart,
     } = this.props;
     return (
       <div>
@@ -29,7 +28,7 @@ export class ProductDetail extends Component {
             </div>
           </div>
         </div>
-        <AddRemoveCartItem />
+        <AddRemoveCartItem handleAddCart={handleAddCart} />
       </div>
     );
   }

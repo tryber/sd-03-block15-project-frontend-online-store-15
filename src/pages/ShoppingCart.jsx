@@ -4,11 +4,7 @@ import CartTable from '../components/CartTable';
 
 export class ShoppingCart extends Component {
   render() {
-    const {
-      location: {
-        state: { cartItems },
-      },
-    } = this.props;
+    const { location: { state: { cartItems } } } = this.props;
     return (
       <div>
         <Link to="/">Voltar</Link>

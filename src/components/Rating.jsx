@@ -44,12 +44,11 @@ class Rating extends React.Component {
   addRating() {
     const { rate, ratingList, comment, email, id } = this.state;
     const { productId } = this.props;
-    this.setState({
-      ratingList: [...ratingList, { rate, comment, email, id: id + 1 }], id: id + 1,
-    });
+    const newId = id + 1;
+    this.setState({ ratingList: [...ratingList, { rate, comment, email, newId }], id: newId });
     localStorage.setItem(
       productId,
-      JSON.stringify([...ratingList, { rate, comment, email, id: id + 1 }]),
+      JSON.stringify([...ratingList, { rate, comment, email, newId }]),
     );
   }
 

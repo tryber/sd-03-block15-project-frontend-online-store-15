@@ -1,232 +1,140 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import brazilStates from '../services/data';
 
 export default class BuyerInfo extends Component {
   constructor(props) {
     super(props);
-    this.fullName = this.fullName.bind(this);
-    this.cpf = this.cpf.bind(this);
-    this.email = this.email.bind(this);
-    this.phone = this.phone.bind(this);
-    this.cep = this.cep.bind(this);
-    this.address = this.address.bind(this);
-    this.complement = this.complement.bind(this);
-    this.number = this.number.bind(this);
-    this.city = this.city.bind(this);
-    this.state = this.state.bind(this);
-    this.product = this.product.bind(this);
-    this.payment = this.payment.bind(this);
+    this.inputFullName = this.inputFullName.bind(this);
+    this.inputCPF = this.inputCPF.bind(this);
+    this.inputEmail = this.inputEmail.bind(this);
+    this.inputPhoneNumber = this.inputPhoneNumber.bind(this);
+    this.inputCEP = this.inputCEP.bind(this);
+    this.inputAddress = this.inputAddress.bind(this);
+    this.inputComplement = this.inputComplement.bind(this);
+    this.inputAddressNumber = this.inputAddressNumber.bind(this);
+    this.inputCity = this.inputCity.bind(this);
+    this.inputBrazilStates = this.inputBrazilStates.bind(this);
   }
 
-  payment() {
+  inputBrazilStates() {
     return (
-      <div className="form-check form-check-inline">
-        <div>
-          <h6>Boleto</h6>
-          <div className="form-check form-check-inline">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="materialInline1"
-              name=""
-            />
-            <label className="form-check-label" htmlFor="materialInline1">
-              BarCode
-            </label>
-            <img width="50" height="50" src="" />
-          </div>
-        </div>
-        <div>
-          <h6>Cartão de Crédito</h6>
-          <div className="form-check form-check-inline">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="materialInline1"
-              name=""
-            />
-            <label className="form-check-label" htmlFor="materialInline1">
-              Visa
-            </label>
-            <img width="50" height="50" src="" />
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="materialInline2"
-              name=""
-            />
-            <label className="form-check-label" htmlFor="materialInline2">
-              MasterCard
-            </label>
-            <img width="50" height="50" src="" />
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="materialInline3"
-              name=""
-            />
-            <label className="form-check-label" htmlFor="materialInline3">
-              Elo
-            </label>
-            <img width="50" height="50" src="" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  product() {
-    return (
-      // ShoppingCart products
       <div className="form-group">
-        <select
-          type="number"
-          className="form-control"
-          id="inputFullName"
-          placeholder="Estado"
-        >
-          <option default value="Estado">
-            Estado
-          </option>
-          <option value="MG">Minas Gerais</option>
+        <select className="form-control" id="inputBrazilStates" placeholder="Estado">
+          {brazilStates.map(({ initials }) => (
+            <option key={initials} value={initials}>
+              {initials}
+            </option>
+          ))}
         </select>
       </div>
     );
   }
 
-  state() {
+  inputCity() {
     return (
       <div className="form-group">
-        <select
-          type="number"
-          className="form-control"
-          id="inputFullName"
-          placeholder="Estado"
-        >
-          <option default value="Estado">
-            Estado
-          </option>
-          <option value="MG">Minas Gerais</option>
-          <option value="SP">São Paulo</option>
-          <option value="RJ">Rio de Janeiro</option>
-        </select>
+        <input type="text" className="form-control" id="inputCity" placeholder="Cidade" />
       </div>
     );
   }
 
-  city() {
+  inputAddressNumber() {
     return (
       <div className="form-group">
         <input
           type="number"
           className="form-control"
-          id="inputFullName"
-          placeholder="Cidade"
-        />
-      </div>
-    );
-  }
-
-  number() {
-    return (
-      <div className="form-group">
-        <input
-          type="number"
-          className="form-control"
-          id="inputFullName"
+          id="inputAddressNumber"
           placeholder="Número"
         />
       </div>
     );
   }
 
-  complement() {
+  inputComplement() {
     return (
       <div className="form-group">
         <input
           type="text"
           className="form-control"
-          id="inputFullName"
+          id="inputComplement"
           placeholder="Complemento"
         />
       </div>
     );
   }
 
-  address() {
+  inputAddress() {
     return (
       <div className="form-group">
         <input
           data-testid="checkout-address"
           type="text"
           className="form-control"
-          id="inputFullName"
+          id="inputAddress"
           placeholder="Endereço"
         />
       </div>
     );
   }
 
-  cep() {
+  inputCEP() {
     return (
       <div className="form-group">
         <input
           data-testid="checkout-cep"
           type="text"
           className="form-control"
-          id="inputFullName"
+          id="inputCEP"
           placeholder="CEP"
         />
       </div>
     );
   }
 
-  phone() {
+  inputPhoneNumber() {
     return (
       <div className="form-group">
         <input
           data-testid="checkout-phone"
           type="text"
           className="form-control"
-          id="inputFullName"
+          id="inputPhoneNumber"
           placeholder="Telefone"
         />
       </div>
     );
   }
 
-  email() {
+  inputEmail() {
     return (
       <div className="form-group">
         <input
           data-testid="checkout-email"
-          type="text"
+          type="email"
           className="form-control"
-          id="inputFullName"
+          id="inputEmail"
           placeholder="Email"
         />
       </div>
     );
   }
 
-  cpf() {
+  inputCPF() {
     return (
       <div className="form-group">
         <input
           data-testid="checkout-cpf"
-          type="number"
+          type="text"
           className="form-control"
-          id="inputFullName"
+          id="inputCPF"
           placeholder="CPF"
         />
       </div>
     );
   }
 
-  fullName() {
+  inputFullName() {
     return (
       <div className="form-group">
         <input
@@ -242,40 +150,21 @@ export default class BuyerInfo extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <form>
-            <h4>Revise seus Produtos</h4>
-            <div className="row">{this.product()}</div>
-          </form>
+      <form>
+        <h4>Informações do Comprador</h4>
+        <div className="row">
+          {this.inputFullName()}
+          {this.inputCPF()}
+          {this.inputEmail()}
+          {this.inputPhoneNumber()}
+          {this.inputCEP()}
+          {this.inputAddress()}
+          {this.inputComplement()}
+          {this.inputAddressNumber()}
+          {this.inputCity()}
+          {this.inputBrazilStates()}
         </div>
-        <div>
-          <form>
-            <h4>Informações do Comprador</h4>
-            <div className="row">
-              {this.fullName()}
-              {this.cpf()}
-              {this.email()}
-              {this.phone()}
-              {this.cep()}
-              {this.address()}
-              {this.complement()}
-              {this.number()}
-              {this.city()}
-              {this.state()}
-            </div>
-          </form>
-          <div>
-            <form>
-              <h4>Método de Pagamento</h4>
-              <div className="row">{this.payment()}</div>
-            </form>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Comprar
-          </button>
-        </div>
-      </div>
+      </form>
     );
   }
 }

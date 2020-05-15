@@ -160,6 +160,7 @@ export default class BuyerInfo extends Component {
     return (
       <div className="form-group">
         <input
+          data-testid="checkout-address"
           type="text"
           className="form-control"
           id="inputFullName"
@@ -173,6 +174,7 @@ export default class BuyerInfo extends Component {
     return (
       <div className="form-group">
         <input
+          data-testid="checkout-cep"
           type="text"
           className="form-control"
           id="inputFullName"
@@ -186,6 +188,7 @@ export default class BuyerInfo extends Component {
     return (
       <div className="form-group">
         <input
+          data-testid="checkout-phone"
           type="text"
           className="form-control"
           id="inputFullName"
@@ -199,6 +202,7 @@ export default class BuyerInfo extends Component {
     return (
       <div className="form-group">
         <input
+          data-testid="checkout-email"
           type="text"
           className="form-control"
           id="inputFullName"
@@ -212,6 +216,7 @@ export default class BuyerInfo extends Component {
     return (
       <div className="form-group">
         <input
+          data-testid="checkout-cpf"
           type="number"
           className="form-control"
           id="inputFullName"
@@ -225,6 +230,7 @@ export default class BuyerInfo extends Component {
     return (
       <div className="form-group">
         <input
+          data-testid="checkout-fullname"
           type="text"
           className="form-control"
           id="inputFullName"

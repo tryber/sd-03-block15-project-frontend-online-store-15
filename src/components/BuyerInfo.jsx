@@ -13,7 +13,7 @@ const inputBrazilStates = () => {
       </select>
     </div>
   );
-}
+};
 
 const inputCity = () => {
   return (
@@ -21,33 +21,23 @@ const inputCity = () => {
       <input type="text" className="form-control" id="inputCity" placeholder="Cidade" />
     </div>
   );
-}
+};
 
 const inputAddressNumber = () => {
   return (
     <div className="form-group">
-      <input
-        type="number"
-        className="form-control"
-        id="inputAddressNumber"
-        placeholder="Número"
-      />
+      <input type="number" className="form-control" id="inputAddressNumber" placeholder="Número" />
     </div>
   );
-}
+};
 
 const inputComplement = () => {
   return (
     <div className="form-group">
-      <input
-        type="text"
-        className="form-control"
-        id="inputComplement"
-        placeholder="Complemento"
-      />
+      <input type="text" className="form-control" id="inputComplement" placeholder="Complemento" />
     </div>
   );
-}
+};
 
 const inputAddress = () => {
   return (
@@ -61,7 +51,7 @@ const inputAddress = () => {
       />
     </div>
   );
-}
+};
 
 const inputCEP = () => {
   return (
@@ -75,7 +65,7 @@ const inputCEP = () => {
       />
     </div>
   );
-}
+};
 
 const inputPhoneNumber = () => {
   return (
@@ -89,7 +79,7 @@ const inputPhoneNumber = () => {
       />
     </div>
   );
-}
+};
 
 const inputEmail = () => {
   return (
@@ -103,7 +93,7 @@ const inputEmail = () => {
       />
     </div>
   );
-}
+};
 
 const inputCPF = () => {
   return (
@@ -117,7 +107,7 @@ const inputCPF = () => {
       />
     </div>
   );
-}
+};
 
 const inputFullName = () => {
   return (
@@ -131,7 +121,7 @@ const inputFullName = () => {
       />
     </div>
   );
-}
+};
 
 export default class BuyerInfo extends Component {
   render() {

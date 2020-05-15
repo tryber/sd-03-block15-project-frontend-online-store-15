@@ -6,21 +6,30 @@ import RatingList from './RatingList';
 class Rating extends React.Component {
   constructor(props) {
     super(props);
-    if (!localStorage.getItem('ratingList')) {
-      localStorage.setItem('ratingList', '[]');
+
+    const { productId } = props;
+    if (!localStorage.getItem(productId)) {
+      localStorage.setItem(productId, '[]');
+    }
+
+    const ratingList = JSON.parse(localStorage.getItem(productId));
+
+    let id = 0;
+    if (ratingList[ratingList.length - 1]) {
+      id = ratingList[ratingList.length - 1].id;
     }
 
     this.state = {
-      ratingList: JSON.parse(localStorage.getItem('ratingList')),
+      ratingList,
       rate: 0,
       email: '',
       comment: '',
-      id: '',
+      id,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleRating = this.handleRating.bind(this);
     this.addRating = this.addRating.bind(this);
-    this.commentRating = this.commentRating.bind(this);
+    this.commentTextArea = this.commentTextArea.bind(this);
   }
 
   handleChange(event) {
@@ -28,20 +37,23 @@ class Rating extends React.Component {
     this.setState({ [id]: value });
   }
 
-  handleRating(rating) {
-    this.setState({ rate: rating });
+  handleRating(rate) {
+    this.setState({ rate });
   }
 
   addRating() {
-    const { rating, ratingList, comment, email, id } = this.state;
-    this.setState({ ratingList: [...ratingList, { rating, comment, email, id: id + 1 }] });
+    const { rate, ratingList, comment, email, id } = this.state;
+    const { productId } = this.props;
+    this.setState({
+      ratingList: [...ratingList, { rate, comment, email, id: id + 1 }], id: id + 1,
+    });
     localStorage.setItem(
-      'ratingList',
-      JSON.stringify([...ratingList, { rating, comment, email, id: id + 1 }]),
+      productId,
+      JSON.stringify([...ratingList, { rate, comment, email, id: id + 1 }]),
     );
   }
 
-  commentRating() {
+  commentTextArea() {
     return (
       <div>
         <textarea
@@ -74,7 +86,7 @@ class Rating extends React.Component {
             />
           </div>
           <Rater total={5} rating={rate} onRate={({ rating }) => this.handleRating(rating)} />
-          {this.commentRating()}
+          {this.commentTextArea()}
           <div className="button">
             <button type="submit" onClick={this.addRating}>
               Avaliar

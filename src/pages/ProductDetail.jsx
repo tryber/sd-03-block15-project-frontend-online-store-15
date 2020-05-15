@@ -4,6 +4,7 @@ import Rating from '../components/Rating';
 export class ProductDetail extends Component {
   render() {
     const { location: { state: { price, thumbnail, title } } } = this.props;
+    const { match: { params: { id } } } = this.props;
     return (
       <div>
         <div className="card mb-3" style={{ maxWidth: '540px' }}>
@@ -28,7 +29,7 @@ export class ProductDetail extends Component {
             </div>
           </div>
         </div>
-        <Rating />
+        <Rating productId={id} />
       </div>
     );
   }

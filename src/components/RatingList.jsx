@@ -7,12 +7,12 @@ export class RatingList extends Component {
     if (ratingList.length !== 0) {
       return (
         <div>
-          {ratingList.map(({ rating, comment, email, id }) => (
+          {ratingList.map(({ rate, comment, email, id }) => (
             <div key={id} className="jumbotron jumbotron-fluid">
               <div className="container">
                 <h1 className="display-4">{comment}</h1>
+                <Rater total={5} rating={rate} interactive={false} />
                 <p className="lead">
-                  <Rater total={5} rating={rating} interactive={false} />
                   {email}
                 </p>
               </div>
@@ -21,7 +21,7 @@ export class RatingList extends Component {
         </div>
       );
     }
-    return <p>Cheguei aqui!</p>;
+    return null;
   }
 }
 

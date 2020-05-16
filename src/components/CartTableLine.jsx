@@ -7,7 +7,7 @@ export class CartTableLine extends Component {
   constructor(props) {
     super(props);
     this.deleteButton = this.deleteButton.bind(this);
-    this.quantityTd = this.quantityTd.bind(this);
+    this.quantityCrud = this.quantityCrud.bind(this);
   }
 
   deleteButton() {
@@ -31,7 +31,7 @@ export class CartTableLine extends Component {
     );
   }
 
-  quantityTd() {
+  quantityCrud() {
     const { item: { title, price, id, quantity }, updateCartItems } = this.props;
     return (
       <td data-testid="shopping-cart-product-quantity">
@@ -69,7 +69,7 @@ export class CartTableLine extends Component {
         {this.deleteButton()}
         <td data-testid="shopping-cart-product-name">{title}</td>
         <td>R$ {price}</td>
-        {this.quantityTd()}
+        {this.quantityCrud()}
       </tr>
     );
   }

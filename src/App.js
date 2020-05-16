@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 import MainPage from './pages/MainPage';
 import ShoppingCart from './pages/ShoppingCart';
@@ -9,6 +9,9 @@ import Checkout from './pages/Checkout';
 function App() {
   return (
     <Router>
+      <nav className="navbar navbar-dark bg-dark justify-content-center">
+        <Link to="/" className="navbar-brand">Online Store</Link>
+      </nav>
       <Switch>
         <Route exact path="/CheckOut" component={Checkout} />
         <Route exact path="/shoppingCart" component={ShoppingCart} />

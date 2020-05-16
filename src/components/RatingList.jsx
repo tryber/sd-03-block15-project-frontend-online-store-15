@@ -8,14 +8,10 @@ export class RatingList extends Component {
       return (
         <div>
           {ratingList.map(({ rate, comment, email, id }) => (
-            <div key={id} className="jumbotron jumbotron-fluid">
-              <div className="container">
-                <h1 className="display-4">{comment}</h1>
-                <Rater total={5} rating={rate} interactive={false} />
-                <p className="lead">
-                  {email}
-                </p>
-              </div>
+            <div key={id} className="jumbotron jumbotron-fluid bg-transparent">
+              <h1 className="display-4">{comment}</h1>
+              <Rater total={5} rating={rate} interactive={false} />
+              <p className="lead">{email}</p>
             </div>
           ))}
         </div>

@@ -4,10 +4,10 @@ export class SearchBox extends Component {
   render() {
     const { handleClick, searchText, onSearchTextChange } = this.props;
     return (
-      <div>
+      <form className="form-inline form-control-lg">
         <input
           id="search-input"
-          className="form-control"
+          className="form-control my-5 mx-3 my-sm-0"
           type="search"
           placeholder="Search"
           aria-label="Search"
@@ -15,15 +15,16 @@ export class SearchBox extends Component {
           value={searchText}
           onChange={onSearchTextChange}
         />
+
         <button
-          className="btn btn-danger"
+          className="btn btn-danger my-2 my-sm-0"
           type="submit"
           data-testid="query-button"
           onClick={handleClick()}
         >
           Search
         </button>
-      </div>
+      </form>
     );
   }
 }

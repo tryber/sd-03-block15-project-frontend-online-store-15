@@ -56,6 +56,7 @@ class Rating extends React.Component {
     return (
       <div>
         <textarea
+          className="form-control"
           data-testid="product-detail-evaluation"
           name="comment"
           id="comment"
@@ -74,22 +75,23 @@ class Rating extends React.Component {
     return (
       <div>
         <fieldset>
-          Avaliações
-          <div>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="email"
-              onChange={(event) => this.handleChange(event.target)}
-            />
-          </div>
-          <Rater total={5} rating={rate} onRate={({ rating }) => this.handleRating(rating)} />
-          {this.commentTextArea()}
-          <div className="button">
-            <button type="submit" onClick={this.addRating}>
-              Avaliar
-            </button>
+          <div className="row-cols-2">
+            <div className="col-6">
+              <h5>Avaliações</h5>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                className="form-control"
+                placeholder="email"
+                onChange={(event) => this.handleChange(event.target)}
+              />
+              <Rater total={5} rating={rate} onRate={({ rating }) => this.handleRating(rating)} />
+              {this.commentTextArea()}
+              <button type="submit" onClick={this.addRating} className="btn btn-link">
+                Avaliar
+              </button>
+            </div>
           </div>
         </fieldset>
         <RatingList ratingList={ratingList} />

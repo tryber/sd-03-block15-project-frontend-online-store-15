@@ -27,14 +27,14 @@ export class CrudCartItem extends Component {
     return (
       <div>
         <h5>Quantidade</h5>
-        <button type="button" onClick={this.addProductToCart}>
+        <button type="button" onClick={this.addProductToCart} className="btn btn-link">
           <FontAwesomeIcon icon={faPlus} />
         </button>
         <span>{quantity}</span>
-        <button type="button" onClick={this.subProductToCart}>
+        <button type="button" onClick={this.subProductToCart} className="btn btn-link">
           <FontAwesomeIcon icon={faMinus} />
         </button>
-        <input type="button" value="Adicionar ao Carrinho" />
+        <input type="button" value="Adicionar ao Carrinho" className="btn btn-link" />
       </div>
     );
   }

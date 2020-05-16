@@ -10,7 +10,7 @@ export class ProductDetail extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="container">
         <div className="card mb-3" style={{ maxWidth: '540px' }}>
           <div className="row no-gutters">
             <div className="col-md-4">

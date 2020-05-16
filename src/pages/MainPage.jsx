@@ -41,8 +41,7 @@ export default class MainPage extends Component {
       this.setState({ cartItems: updatedCart });
     } else {
       this.setState({
-        cartItems: [...cartItems,
-          { title, id, price, quantity: 1 }],
+        cartItems: [...cartItems, { title, id, price, quantity: 1 }],
       });
     }
   }
@@ -50,28 +49,35 @@ export default class MainPage extends Component {
   render() {
     const { searchText, products, categories, selectedCategory, cartItems } = this.state;
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-3">
-            <Categories
-              categories={categories}
-              selectedCategory={selectedCategory}
-              onCategoryChange={async (e) => {
-                await this.setState({ selectedCategory: e.target.value });
-                this.searchProducts();
-              }}
-            />
-          </div>
-          <div className="col">
-            <SearchBox
-              handleClick={() => this.searchProducts}
-              searchText={searchText}
-              onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
-            />
-            <Link to={{ pathname: '/shoppingCart', state: { cartItems } }} data-testid="shopping-cart-button">
-              Carrinho de compras
-            </Link>
-            <ProductList products={products} addToCart={this.addToCart} />
+      <div>
+        <div className="navbar navbar-dark bg-dark justify-content-center ">
+          <SearchBox
+            handleClick={() => this.searchProducts}
+            searchText={searchText}
+            onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
+          />
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-3">
+              <Categories
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onCategoryChange={async (e) => {
+                  await this.setState({ selectedCategory: e.target.value });
+                  this.searchProducts();
+                }}
+              />
+            </div>
+            <div className="col">
+              <Link
+                to={{ pathname: '/shoppingCart', state: { cartItems } }}
+                data-testid="shopping-cart-button"
+              >
+                Carrinho de compras
+              </Link>
+              <ProductList products={products} addToCart={this.addToCart} />
+            </div>
           </div>
         </div>
       </div>

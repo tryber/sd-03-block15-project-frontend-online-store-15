@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import addToCart from '../services/crudCart';
 
 export class Product extends Component {
   constructor(props) {
@@ -8,7 +9,6 @@ export class Product extends Component {
   }
 
   addCartInput() {
-    const { addToCart } = this.props;
     const { product: { title, price, id } } = this.props;
     return (
       <input
@@ -16,7 +16,7 @@ export class Product extends Component {
         className="btn btn-link"
         value="Adicionar ao Carrinho"
         type="button"
-        onClick={() => addToCart(id, title, price)}
+        onClick={() => addToCart(title, price, id)}
       />
     );
   }

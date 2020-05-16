@@ -4,7 +4,7 @@ import CartTable from '../components/CartTable';
 
 export class ShoppingCart extends Component {
   render() {
-    const { location: { state: { cartItems } } } = this.props;
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     return (
       <div>
         <Link to="/">Voltar</Link>

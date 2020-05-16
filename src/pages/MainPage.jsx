@@ -8,15 +8,18 @@ import Categories from '../components/Categories';
 export default class MainPage extends Component {
   constructor(props) {
     super(props);
+
+    if (!localStorage.getItem('cartItems')) {
+      localStorage.setItem('cartItems', '[]');
+    }
+
     this.state = {
       categories: [],
       selectedCategory: '',
       searchText: '',
       products: [],
-      cartItems: [],
     };
     this.searchProducts = this.searchProducts.bind(this);
-    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -30,20 +33,6 @@ export default class MainPage extends Component {
     api
       .getProductsFromCategoryAndQuery(selectedCategory, searchText)
       .then((products) => this.setState({ products }));
-  }
-
-  addToCart(id, title, price) {
-    const { cartItems } = this.state;
-    const itemIndex = cartItems.findIndex((item) => item.id === id);
-    if (itemIndex !== -1) {
-      const updatedCart = cartItems;
-      updatedCart[itemIndex].quantity += 1;
-      this.setState({ cartItems: updatedCart });
-    } else {
-      this.setState({
-        cartItems: [...cartItems, { title, id, price, quantity: 1 }],
-      });
-    }
   }
 
   render() {
@@ -71,12 +60,12 @@ export default class MainPage extends Component {
             </div>
             <div className="col">
               <Link
-                to={{ pathname: '/shoppingCart', state: { cartItems } }}
+                to="/shoppingCart"
                 data-testid="shopping-cart-button"
               >
                 Carrinho de compras
               </Link>
-              <ProductList products={products} addToCart={this.addToCart} />
+              <ProductList products={products} />
             </div>
           </div>
         </div>

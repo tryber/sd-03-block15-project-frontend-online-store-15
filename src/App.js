@@ -11,12 +11,9 @@ function App() {
     <Router>
       <nav className="navbar navbar-dark bg-dark justify-content-center">
         <Link to="/" className="navbar-brand">Online Store</Link>
-        <Link
-                to="/shoppingCart"
-                data-testid="shopping-cart-button"
-              >
-                Carrinho de compras
-              </Link>
+        <Link to="/shoppingCart" data-testid="shopping-cart-button">
+          Carrinho de compras
+        </Link>
       </nav>
       <Switch>
         <Route exact path="/CheckOut" component={Checkout} />

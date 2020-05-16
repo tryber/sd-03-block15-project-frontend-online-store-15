@@ -43,7 +43,13 @@ export class CrudCartItem extends Component {
         <button type="button" onClick={this.subProductToCart} className="btn btn-link">
           <FontAwesomeIcon icon={faMinus} />
         </button>
-        <input data-testid="product-detail-add-to-cart" type="button" value="Adicionar ao Carrinho" className="btn btn-link" onClick={() => updateCart(title, price, id, quantity)} />
+        <input
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          value="Adicionar ao Carrinho"
+          className="btn btn-link"
+          onClick={() => updateCart(title, price, id, quantity)}
+        />
       </div>
     );
   }

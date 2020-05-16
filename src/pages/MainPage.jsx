@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import SearchBox from '../components/SearchBox';
 import ProductList from '../components/ProductList';
@@ -36,7 +35,7 @@ export default class MainPage extends Component {
   }
 
   render() {
-    const { searchText, products, categories, selectedCategory, cartItems } = this.state;
+    const { searchText, products, categories, selectedCategory } = this.state;
     return (
       <div>
         <div className="navbar navbar-dark bg-dark justify-content-center ">

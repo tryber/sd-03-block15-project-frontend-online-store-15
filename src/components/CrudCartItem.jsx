@@ -27,7 +27,7 @@ export class CrudCartItem extends Component {
 
   subProductToCart() {
     const { quantity } = this.state;
-    if (quantity > 0) this.setState({ quantity: quantity - 1 });
+    if (quantity > 1) this.setState({ quantity: quantity - 1 });
   }
 
   render() {

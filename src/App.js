@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import MainPage from './pages/MainPage';
 import ShoppingCart from './pages/ShoppingCart';
@@ -12,7 +14,7 @@ function App() {
       <nav className="navbar navbar-dark bg-dark justify-content-center">
         <Link to="/" className="navbar-brand">Online Store</Link>
         <Link to="/shoppingCart" data-testid="shopping-cart-button">
-          Carrinho de compras
+          <FontAwesomeIcon icon={faShoppingCart} />
         </Link>
       </nav>
       <Switch>

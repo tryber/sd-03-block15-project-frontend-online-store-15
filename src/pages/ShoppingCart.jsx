@@ -3,12 +3,24 @@ import { Link } from 'react-router-dom';
 import CartTable from '../components/CartTable';
 
 export class ShoppingCart extends Component {
-  render() {
+  constructor(props) {
+    super(props);
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    this.state = ({ cartItems });
+    this.updateCartItems = this.updateCartItems.bind(this);
+  }
+
+  updateCartItems() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    this.setState({ cartItems });
+  }
+
+  render() {
+    const { cartItems } = this.state;
     return (
       <div>
         <Link to="/">Voltar</Link>
-        <CartTable cartItems={cartItems} />
+        <CartTable cartItems={cartItems} updateCartItems={this.updateCartItems} />
         <Link data-testid="checkout-products" to={{ pathname: '/checkout', state: { cartItems } }}>
           Finalizar Compra
         </Link>

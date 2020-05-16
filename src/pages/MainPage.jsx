@@ -59,12 +59,6 @@ export default class MainPage extends Component {
               />
             </div>
             <div className="col">
-              <Link
-                to="/shoppingCart"
-                data-testid="shopping-cart-button"
-              >
-                Carrinho de compras
-              </Link>
               <ProductList products={products} />
             </div>
           </div>

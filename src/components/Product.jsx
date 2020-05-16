@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import addToCart from '../services/crudCart';
+import { addToCart } from '../services/crudCart';
 
 export class Product extends Component {
   constructor(props) {

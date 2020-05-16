@@ -29,7 +29,7 @@ export class ProductDetail extends Component {
             </div>
           </div>
         </div>
-        <CrudCartItem />
+        <CrudCartItem product={{ id, price, title }} />
         <Rating productId={id} />
       </div>
     );

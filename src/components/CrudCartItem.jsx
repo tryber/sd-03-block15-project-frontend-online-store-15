@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { updateCart } from '../services/crudCart';
 
 export class CrudCartItem extends Component {
   constructor(props) {
     super(props);
 
-    this.state = ({ quantity: 1 });
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    const itemIndex = cartItems.findIndex((item) => item.id === props.id);
+    let quantity = 1;
+    if (cartItems[itemIndex]) {
+      quantity = cartItems[itemIndex].quantity;
+    }
+
+    this.state = ({ quantity });
 
     this.addProductToCart = this.addProductToCart.bind(this);
     this.subProductToCart = this.subProductToCart.bind(this);
@@ -24,6 +32,7 @@ export class CrudCartItem extends Component {
 
   render() {
     const { quantity } = this.state;
+    const { product: { id, price, title } } = this.props;
     return (
       <div>
         <h5>Quantidade</h5>
@@ -34,7 +43,7 @@ export class CrudCartItem extends Component {
         <button type="button" onClick={this.subProductToCart} className="btn btn-link">
           <FontAwesomeIcon icon={faMinus} />
         </button>
-        <input type="button" value="Adicionar ao Carrinho" className="btn btn-link" />
+        <input data-testid="product-detail-add-to-cart" type="button" value="Adicionar ao Carrinho" className="btn btn-link" onClick={() => updateCart(title, price, id, quantity)} />
       </div>
     );
   }

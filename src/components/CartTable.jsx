@@ -24,7 +24,12 @@ export class CartTable extends Component {
     return (
       <tbody>
         {cartItems.map((item, index) => (
-          <CartTableLine key={item.id} item={item} index={index} updateCartItems={updateCartItems} />
+          <CartTableLine
+            key={item.id}
+            item={item}
+            index={index}
+            updateCartItems={updateCartItems}
+          />
         ))}
       </tbody>
     );

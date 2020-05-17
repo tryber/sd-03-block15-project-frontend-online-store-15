@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import './App.css';
@@ -7,23 +7,40 @@ import ShoppingCart from './pages/ShoppingCart';
 import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
 import Navbar from './components/Navbar';
+import ShoppingCartButton from './components/ShoppingCartButton';
 
-function App() {
-  return (
-    <Router>
-      <Navbar>
-        <Link to="/" className="navbar-brand">
-          Online Store
-        </Link>
-      </Navbar>
-      <Switch>
-        <Route exact path="/CheckOut" component={Checkout} />
-        <Route exact path="/shoppingCart" component={ShoppingCart} />
-        <Route exact path="/product/:id" component={ProductDetail} />
-        <Route exact path="/" component={MainPage} />
-      </Switch>
-    </Router>
-  );
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { cartSize: 0 };
+    this.updateCartSize = this.updateCartSize.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateCartSize();
+  }
+
+  updateCartSize() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    const cartSize = cartItems.reduce((total, item) => total + item.quantity, 0);
+    this.setState({ cartSize });
+  }
+
+  render() {
+    const { cartSize } = this.state;
+    return (
+      <Router>
+        <Navbar>
+          <Link to="/" className="navbar-brand">Online Store</Link>
+          <ShoppingCartButton cartSize={cartSize} />
+        </Navbar>
+        <Switch>
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/shoppingCart" render={(props) => <ShoppingCart {...props} updateCartSize={this.updateCartSize} />} />
+          <Route path="/product/:id" render={(props) => <ProductDetail {...props} updateCartSize={this.updateCartSize} />} />
+          <Route path="/" render={() => <MainPage updateCartSize={this.updateCartSize} />} />
+        </Switch>
+      </Router>
+    );
+  }
 }
-
-export default App;

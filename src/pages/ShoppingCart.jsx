@@ -8,8 +8,7 @@ export class ShoppingCart extends Component {
   constructor(props) {
     super(props);
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    const cartSize = cartItems.length;
-    this.state = { cartItems, cartSize };
+    this.state = { cartItems };
     this.updateCartItems = this.updateCartItems.bind(this);
   }
 
@@ -19,14 +18,16 @@ export class ShoppingCart extends Component {
   }
 
   render() {
-    const { cartItems, cartSize } = this.state;
+    const { cartItems } = this.state;
+    const { updateCartSize } = this.props;
     return (
       <div>
-        <Navbar>
-          <ShoppingCartButton cartSize={cartSize} />
-        </Navbar>
         <Link to="/">Voltar</Link>
-        <CartTable cartItems={cartItems} updateCartItems={this.updateCartItems} />
+        <CartTable
+          cartItems={cartItems}
+          updateCartItems={this.updateCartItems}
+          updateCartSize={updateCartSize}
+        />
         <Link data-testid="checkout-products" to={{ pathname: '/checkout', state: { cartItems } }}>
           Finalizar Compra
         </Link>

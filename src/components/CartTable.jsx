@@ -20,7 +20,7 @@ export class CartTable extends Component {
   }
 
   cartTableBody() {
-    const { cartItems, updateCartItems } = this.props;
+    const { cartItems, updateCartItems, updateCartSize } = this.props;
     return (
       <tbody>
         {cartItems.map((item, index) => (
@@ -29,6 +29,7 @@ export class CartTable extends Component {
             item={item}
             index={index}
             updateCartItems={updateCartItems}
+            updateCartSize={updateCartSize}
           />
         ))}
       </tbody>

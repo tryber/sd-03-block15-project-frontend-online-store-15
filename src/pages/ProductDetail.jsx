@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import Rating from '../components/Rating';
 import CrudCartItem from '../components/CrudCartItem';
-import Navbar from '../components/Navbar';
-import ShoppingCartButton from '../components/ShoppingCartButton';
 
 export class ProductDetail extends Component {
   constructor(props) {
     super(props);
-    const cartSize = JSON.parse(localStorage.getItem('cartItems')).length;
-    this.state = { cartSize };
-    this.updateCartItems = this.updateCartItems.bind(this);
     this.productCard = this.productCard.bind(this);
   }
 
@@ -27,7 +22,7 @@ export class ProductDetail extends Component {
                 {`${title} - R$${price}`}
               </h5>
               {shipping.shipping ? (
-                <p className="text-danger" data-testid="free-shipping">
+                <p className="bg-danger text-white" data-testid="free-shipping">
                   Frete grátis
                 </p>
               ) : null}
@@ -42,23 +37,14 @@ export class ProductDetail extends Component {
     );
   }
 
-  updateCartItems() {
-    const cartSize = JSON.parse(localStorage.getItem('cartItems')).length;
-    this.setState({ cartSize });
-  }
-
   render() {
     const { location: { state: { price, title } } } = this.props;
-    const { match: { params: { id } } } = this.props;
-    const { cartSize } = this.state;
+    const { match: { params: { id } }, updateCartSize } = this.props;
     return (
       <div>
-        <Navbar>
-          <ShoppingCartButton cartSize={cartSize} />
-        </Navbar>
         <div className="container">
           {this.productCard()}
-          <CrudCartItem product={{ id, price, title }} updateCartSize={this.updateCartItems} />
+          <CrudCartItem product={{ id, price, title }} updateCartSize={updateCartSize} />
           <Rating productId={id} />
         </div>
       </div>

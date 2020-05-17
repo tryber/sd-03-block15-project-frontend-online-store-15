@@ -9,14 +9,17 @@ export class Product extends Component {
   }
 
   addCartInput() {
-    const { product: { title, price, id } } = this.props;
+    const { product: { title, price, id, available_quantity: availableQuantity }, updateCartSize } = this.props;
     return (
       <input
         data-testid="product-add-to-cart"
         className="btn btn-link"
         value="Adicionar ao Carrinho"
         type="button"
-        onClick={() => addToCart(title, price, id)}
+        onClick={() => {
+          addToCart(title, price, id, availableQuantity);
+          updateCartSize();
+        }}
       />
     );
   }
@@ -30,7 +33,7 @@ export class Product extends Component {
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             {shipping.free_shipping ? (
-              <p className="text-danger" data-testid="free-shipping">
+              <p className="bg-danger text-white" data-testid="free-shipping">
                 Frete grátis
               </p>
             ) : null}

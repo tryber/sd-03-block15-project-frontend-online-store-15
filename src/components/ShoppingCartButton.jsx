@@ -8,7 +8,7 @@ export class ShoppingCartButton extends Component {
     const { cartSize } = this.props;
     return (
       <Link to="/shoppingCart" data-testid="shopping-cart-button">
-        <p>{cartSize}</p>
+        <p data-testid="shopping-cart-size">{cartSize}</p>
         <FontAwesomeIcon icon={faShoppingCart} />
       </Link>
     );

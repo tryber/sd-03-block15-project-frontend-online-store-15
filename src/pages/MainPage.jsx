@@ -3,7 +3,6 @@ import * as api from '../services/api';
 import SearchBox from '../components/SearchBox';
 import ProductList from '../components/ProductList';
 import Categories from '../components/Categories';
-import ShoppingCartButton from '../components/ShoppingCartButton';
 import Navbar from '../components/Navbar';
 
 export default class MainPage extends Component {
@@ -19,7 +18,6 @@ export default class MainPage extends Component {
       selectedCategory: '',
       searchText: '',
       products: [],
-      cartSize: 0,
     };
     this.searchProducts = this.searchProducts.bind(this);
   }
@@ -39,6 +37,7 @@ export default class MainPage extends Component {
 
   render() {
     const { searchText, products, categories, selectedCategory } = this.state;
+    const { updateCartSize } = this.props;
     return (
       <div>
         <Navbar>
@@ -47,7 +46,6 @@ export default class MainPage extends Component {
             searchText={searchText}
             onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
           />
-          <ShoppingCartButton />
         </Navbar>
         <div className="container">
           <div className="row">
@@ -62,7 +60,7 @@ export default class MainPage extends Component {
               />
             </div>
             <div className="col">
-              <ProductList products={products} />
+              <ProductList products={products} updateCartSize={updateCartSize} />
             </div>
           </div>
         </div>

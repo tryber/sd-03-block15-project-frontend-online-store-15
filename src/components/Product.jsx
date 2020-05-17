@@ -24,22 +24,14 @@ export class Product extends Component {
   }
 
   render() {
-    const {
-      product: {
-        title,
-        price,
-        thumbnail,
-        id,
-        shipping: { free_shipping },
-      },
-    } = this.props;
+    const { product: { title, price, thumbnail, id, shipping } } = this.props;
     return (
       <div className="col mb-3" data-testid="product">
         <div className="card text-center" style={{ width: '18rem' }}>
           <img src={thumbnail} alt={`${title} thumbnail`} className="card-img-top" />
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
-            {free_shipping ? (
+            {shipping.free_shipping ? (
               <p className="text-danger" data-testid="free-shipping">
                 Frete grátis
               </p>
@@ -48,7 +40,7 @@ export class Product extends Component {
             <Link
               to={{
                 pathname: `/product/${id}`,
-                state: { title, thumbnail, price, free_shipping },
+                state: { title, thumbnail, price, shipping },
               }}
               className="btn btn-link"
               data-testid="product-detail-link"

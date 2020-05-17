@@ -9,7 +9,9 @@ export class Product extends Component {
   }
 
   addCartInput() {
-    const { product: { title, price, id } } = this.props;
+    const {
+      product: { title, price, id },
+    } = this.props;
     return (
       <input
         data-testid="product-add-to-cart"
@@ -22,22 +24,31 @@ export class Product extends Component {
   }
 
   render() {
-    const { product: { title, price, thumbnail, id } } = this.props;
+    const {
+      product: {
+        title,
+        price,
+        thumbnail,
+        id,
+        shipping: { free_shipping },
+      },
+    } = this.props;
     return (
       <div className="col mb-3" data-testid="product">
         <div className="card text-center" style={{ width: '18rem' }}>
-          <img
-            src={thumbnail}
-            alt={`${title} thumbnail`}
-            className="card-img-top"
-          />
+          <img src={thumbnail} alt={`${title} thumbnail`} className="card-img-top" />
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
+            {free_shipping ? (
+              <p className="text-danger" data-testid="free-shipping">
+                Frete grátis
+              </p>
+            ) : null}
             <p className="card-text">{`R$${price}`}</p>
             <Link
               to={{
                 pathname: `/product/${id}`,
-                state: { title, thumbnail, price },
+                state: { title, thumbnail, price, free_shipping },
               }}
               className="btn btn-link"
               data-testid="product-detail-link"

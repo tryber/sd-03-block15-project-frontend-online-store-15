@@ -32,7 +32,7 @@ export class CrudCartItem extends Component {
 
   render() {
     const { quantity } = this.state;
-    const { product: { id, price, title } } = this.props;
+    const { product: { id, price, title }, updateCartSize } = this.props;
     return (
       <div>
         <h5>Quantidade</h5>
@@ -48,7 +48,10 @@ export class CrudCartItem extends Component {
           type="button"
           value="Adicionar ao Carrinho"
           className="btn btn-link"
-          onClick={() => updateCart(title, price, id, quantity)}
+          onClick={() => {
+            updateCart(title, price, id, quantity);
+            updateCartSize();
+          }}
         />
       </div>
     );

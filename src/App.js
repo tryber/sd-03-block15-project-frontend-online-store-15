@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import './App.css';
 import MainPage from './pages/MainPage';
@@ -11,7 +11,11 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <Router>
-      <Navbar />
+      <Navbar>
+        <Link to="/" className="navbar-brand">
+          Online Store
+        </Link>
+      </Navbar>
       <Switch>
         <Route exact path="/CheckOut" component={Checkout} />
         <Route exact path="/shoppingCart" component={ShoppingCart} />

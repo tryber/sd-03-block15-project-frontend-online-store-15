@@ -3,14 +3,26 @@ import React, { Component } from 'react';
 import BuyerInfo from '../components/BuyerInfo';
 import PaymentForms from '../components/PaymentForms';
 import CartTable from '../components/CartTable';
-
+import ShoppingCartButton from '../components/ShoppingCartButton';
+import Navbar from '../components/Navbar';
 
 export default class Checkout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { cartSize: 0 };
+  }
+
   render() {
-    const { location: { state: { cartItems } } } = this.props;
+    const {
+      location: {
+        state: { cartItems },
+      },
+    } = this.props;
     return (
       <div>
-        {/* <Link to="/shoppingcart">Voltar</Link> */}
+        <Navbar>
+          <ShoppingCartButton />
+        </Navbar>
         <CartTable cartItems={cartItems} />
         <BuyerInfo />
         <PaymentForms />

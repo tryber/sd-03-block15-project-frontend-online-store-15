@@ -3,6 +3,8 @@ import * as api from '../services/api';
 import SearchBox from '../components/SearchBox';
 import ProductList from '../components/ProductList';
 import Categories from '../components/Categories';
+import ShoppingCartButton from '../components/ShoppingCartButton';
+import Navbar from '../components/Navbar';
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ export default class MainPage extends Component {
       selectedCategory: '',
       searchText: '',
       products: [],
+      cartSize: 0,
     };
     this.searchProducts = this.searchProducts.bind(this);
   }
@@ -38,13 +41,14 @@ export default class MainPage extends Component {
     const { searchText, products, categories, selectedCategory } = this.state;
     return (
       <div>
-        <div className="navbar navbar-dark bg-dark justify-content-center ">
+        <Navbar>
           <SearchBox
             handleClick={() => this.searchProducts}
             searchText={searchText}
             onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
           />
-        </div>
+          <ShoppingCartButton />
+        </Navbar>
         <div className="container">
           <div className="row">
             <div className="col-3">

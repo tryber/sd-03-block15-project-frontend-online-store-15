@@ -13,11 +13,7 @@ export default class Checkout extends Component {
   }
 
   render() {
-    const {
-      location: {
-        state: { cartItems },
-      },
-    } = this.props;
+    const { location: { state: { cartItems } } } = this.props;
     return (
       <div>
         <Navbar>

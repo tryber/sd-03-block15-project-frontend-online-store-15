@@ -36,8 +36,14 @@ export default class App extends Component {
         </Navbar>
         <Switch>
           <Route path="/checkout" component={Checkout} />
-          <Route path="/shoppingCart" render={(props) => <ShoppingCart {...props} updateCartSize={this.updateCartSize} />} />
-          <Route path="/product/:id" render={(props) => <ProductDetail {...props} updateCartSize={this.updateCartSize} />} />
+          <Route
+            path="/shoppingCart"
+            render={(props) => <ShoppingCart {...props} updateCartSize={this.updateCartSize} />}
+          />
+          <Route
+            path="/product/:id"
+            render={(props) => <ProductDetail {...props} updateCartSize={this.updateCartSize} />}
+          />
           <Route path="/" render={() => <MainPage updateCartSize={this.updateCartSize} />} />
         </Switch>
       </Router>

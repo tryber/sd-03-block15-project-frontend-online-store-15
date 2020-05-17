@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CartTable from '../components/CartTable';
-import Navbar from '../components/Navbar';
-import ShoppingCartButton from '../components/ShoppingCartButton';
 
 export class ShoppingCart extends Component {
   constructor(props) {

@@ -32,7 +32,11 @@ export class CartTableLine extends Component {
   }
 
   quantityCrud() {
-    const { item: { title, price, id, quantity, availableQuantity }, updateCartItems, updateCartSize } = this.props;
+    const {
+      item: { title, price, id, quantity, availableQuantity },
+      updateCartItems,
+      updateCartSize,
+    } = this.props;
     return (
       <td data-testid="shopping-cart-product-quantity">
         <button

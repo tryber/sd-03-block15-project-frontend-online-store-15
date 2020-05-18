@@ -4,6 +4,7 @@ body {
 
 .container {
   background: rgb(232, 233, 235);
+  padding-top: 30px;
 }
 
 .cart-icon {

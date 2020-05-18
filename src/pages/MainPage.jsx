@@ -74,8 +74,8 @@ export default class MainPage extends Component {
       <Categories
         categories={categories}
         selectedCategory={selectedCategory}
-        onCategoryChange={async (e) => {
-          await this.setState({ selectedCategory: e.target.value });
+        onCategoryClick={async (e) => {
+          await this.setState({ selectedCategory: e.target.id });
           this.searchProducts();
         }}
       />

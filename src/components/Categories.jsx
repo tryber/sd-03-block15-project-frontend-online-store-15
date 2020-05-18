@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export class Categories extends Component {
   render() {
-    const { selectedCategory, onCategoryClick, categories } = this.props;
+    const { onCategoryClick, categories } = this.props;
 
     return categories.map(({ id, name }) => (
       <div key={id}>
@@ -13,7 +13,6 @@ export class Categories extends Component {
           id={id}
           value={name}
           name="categories"
-          checked={selectedCategory === id}
           onClick={onCategoryClick}
         />
       </div>

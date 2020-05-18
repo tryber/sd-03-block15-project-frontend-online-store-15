@@ -15,19 +15,19 @@ const inputBrazilStates = () => (
 
 const inputCity = () => (
   <div className="form-group">
-    <input type="text" className="form-control" id="inputCity" placeholder="Cidade" />
+    <input type="text" className="form-control" id="inputCity" placeholder="Cidade" required />
   </div>
 );
 
 const inputAddressNumber = () => (
   <div className="form-group">
-    <input type="number" className="form-control" id="inputAddressNumber" placeholder="Número" />
+    <input type="number" className="form-control" id="inputAddressNumber" placeholder="Número" required />
   </div>
 );
 
 const inputComplement = () => (
   <div className="form-group">
-    <input type="text" className="form-control" id="inputComplement" placeholder="Complemento" />
+    <input type="text" className="form-control" id="inputComplement" placeholder="Complemento" required />
   </div>
 );
 
@@ -39,6 +39,7 @@ const inputAddress = () => (
       className="form-control"
       id="inputAddress"
       placeholder="Endereço"
+      required
     />
   </div>
 );
@@ -51,6 +52,7 @@ const inputCEP = () => (
       className="form-control"
       id="inputCEP"
       placeholder="CEP"
+      required
     />
   </div>
 );
@@ -63,6 +65,7 @@ const inputPhoneNumber = () => (
       className="form-control"
       id="inputPhoneNumber"
       placeholder="Telefone"
+      required
     />
   </div>
 );
@@ -75,6 +78,7 @@ const inputEmail = () => (
       className="form-control"
       id="inputEmail"
       placeholder="Email"
+      required
     />
   </div>
 );
@@ -87,6 +91,7 @@ const inputCPF = () => (
       className="form-control"
       id="inputCPF"
       placeholder="CPF"
+      required
     />
   </div>
 );
@@ -99,6 +104,7 @@ const inputFullName = () => (
       className="form-control"
       id="inputFullName"
       placeholder="Nome Completo"
+      required
     />
   </div>
 );

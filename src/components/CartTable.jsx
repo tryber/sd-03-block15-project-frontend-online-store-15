@@ -16,15 +16,21 @@ export class CartTable extends Component {
   constructor(props) {
     super(props);
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    this.state = { cartItems };
+    this.state = { cartItems, totalCartPrice: 0 };
     this.updateCartItems = this.updateCartItems.bind(this);
     this.cartTable = this.cartTable.bind(this);
     this.cartTableBody = this.cartTableBody.bind(this);
+    this.totalCartPrice = this.totalCartPrice.bind(this);
   }
 
-  updateCartItems() {
+  componentDidMount() {
+    this.totalCartPrice();
+  }
+
+  async updateCartItems() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    this.setState({ cartItems });
+    await this.setState(() => ({ cartItems }));
+    this.totalCartPrice();
   }
 
   cartTableBody() {
@@ -45,6 +51,19 @@ export class CartTable extends Component {
     );
   }
 
+  totalCartPrice() {
+    const { cartItems } = this.state;
+    const totalCartPrice = cartItems
+      .reduce((accumulator, { quantity, price }) => quantity * price + accumulator, 0)
+      .toFixed(2);
+    // this.setState({totalCartPrice})
+    this.setState(() => {
+      return {
+        totalCartPrice,
+      };
+    });
+  }
+
   cartTable() {
     const { cartItems } = this.state;
     if (cartItems.length === 0) {
@@ -59,7 +78,13 @@ export class CartTable extends Component {
   }
 
   render() {
-    return this.cartTable();
+    const { totalCartPrice } = this.state;
+    return (
+      <div>
+        {this.cartTable()}
+        <span>{`Preço total: R$ ${totalCartPrice}`}</span>
+      </div>
+    );
   }
 }
 

@@ -44,7 +44,10 @@ export class ProductDetail extends Component {
       <div>
         <div className="container">
           {this.productCard()}
-          <CrudCartItem product={{ id, price, title, availableQuantity }} updateCartSize={updateCartSize} />
+          <CrudCartItem
+            product={{ id, price, title, availableQuantity }}
+            updateCartSize={updateCartSize}
+          />
           <Rating productId={id} />
         </div>
       </div>

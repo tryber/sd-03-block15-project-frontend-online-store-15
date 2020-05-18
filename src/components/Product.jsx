@@ -29,7 +29,8 @@ export class Product extends Component {
   }
 
   render() {
-    const { product: { title, price, thumbnail, id, shipping, available_quantity: availableQuantity } } = this.props;
+    const { product: { title, price, thumbnail, id, shipping } } = this.props;
+    const { available_quantity: availableQuantity } = this.props;
     return (
       <div className="col mb-3" data-testid="product">
         <div className="card text-center" style={{ width: '18rem' }}>

@@ -22,6 +22,7 @@ export default class MainPage extends Component {
     this.searchProducts = this.searchProducts.bind(this);
     this.searchProductsSorted = this.searchProductsSorted.bind(this);
     this.sortButtons = this.sortButtons.bind(this);
+    this.categorySelector = this.categorySelector.bind(this);
   }
 
   componentDidMount() {
@@ -38,9 +39,7 @@ export default class MainPage extends Component {
   }
 
   searchProductsSorted(sort) {
-    const {
-      products: { query, filters },
-    } = this.state;
+    const { products: { query, filters } } = this.state;
     let q = query;
     let category = '';
     if (filters[0].values[0].id) category = filters[0].values[0].id;
@@ -69,8 +68,24 @@ export default class MainPage extends Component {
     );
   }
 
+  categorySelector() {
+    const { categories, selectedCategory } = this.state;
+    return (
+      <div className="col-3">
+        <Categories
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={async (e) => {
+            await this.setState({ selectedCategory: e.target.value });
+            this.searchProducts();
+          }}
+        />
+      </div>
+    );
+  }
+
   render() {
-    const { searchText, products, categories, selectedCategory } = this.state;
+    const { searchText, products } = this.state;
     const { updateCartSize } = this.props;
     return (
       <div>
@@ -86,14 +101,7 @@ export default class MainPage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-3">
-              <Categories
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onCategoryChange={async (e) => {
-                  await this.setState({ selectedCategory: e.target.value });
-                  this.searchProducts();
-                }}
-              />
+              {this.categorySelector()}
             </div>
             <div className="col">
               <ProductList products={products} updateCartSize={updateCartSize} />

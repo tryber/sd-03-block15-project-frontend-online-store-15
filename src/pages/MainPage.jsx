@@ -39,9 +39,7 @@ export default class MainPage extends Component {
   }
 
   searchProductsSorted(sort) {
-    const {
-      products: { query, filters },
-    } = this.state;
+    const { products: { query, filters } } = this.state;
     let q = query;
     let category = '';
     if (filters[0].values[0].id) category = filters[0].values[0].id;

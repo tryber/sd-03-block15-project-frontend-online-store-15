@@ -9,7 +9,7 @@ export class ShoppingCart extends Component {
       <div>
         <Link to="/">Voltar</Link>
         <CartTable updateCartSize={updateCartSize} />
-        <Link data-testid="checkout-products" to={{ pathname: '/checkout', state: { cartItems } }}>
+        <Link data-testid="checkout-products" to="/checkout">
           Finalizar Compra
         </Link>
       </div>

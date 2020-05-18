@@ -46,7 +46,7 @@ export class CartTable extends Component {
   }
 
   cartTable() {
-    const { cartItems } = this.props;
+    const { cartItems } = this.state;
     if (cartItems.length === 0) {
       return <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>;
     }

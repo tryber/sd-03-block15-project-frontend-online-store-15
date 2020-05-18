@@ -39,7 +39,9 @@ export default class MainPage extends Component {
   }
 
   searchProductsSorted(sort) {
-    const { products: { query, filters } } = this.state;
+    const {
+      products: { query, filters },
+    } = this.state;
     let q = query;
     let category = '';
     if (filters[0].values[0].id) category = filters[0].values[0].id;
@@ -71,16 +73,14 @@ export default class MainPage extends Component {
   categorySelector() {
     const { categories, selectedCategory } = this.state;
     return (
-      <div className="col-3">
-        <Categories
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryChange={async (e) => {
-            await this.setState({ selectedCategory: e.target.value });
-            this.searchProducts();
-          }}
-        />
-      </div>
+      <Categories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategoryChange={async (e) => {
+          await this.setState({ selectedCategory: e.target.value });
+          this.searchProducts();
+        }}
+      />
     );
   }
 
@@ -100,9 +100,7 @@ export default class MainPage extends Component {
         </Navbar>
         <div className="container">
           <div className="row">
-            <div className="col-3">
-              {this.categorySelector()}
-            </div>
+            <div className="col-3">{this.categorySelector()}</div>
             <div className="col">
               <ProductList products={products} updateCartSize={updateCartSize} />
             </div>

@@ -8,9 +8,10 @@ export class CrudCartItem extends Component {
     super(props);
 
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    const itemIndex = cartItems.findIndex((item) => item.id === props.id);
+    const { product: { id } } = props;
+    const itemIndex = cartItems.findIndex((item) => item.id === id);
     let quantity = 1;
-    if (cartItems[itemIndex]) {
+    if (itemIndex !== -1) {
       quantity = cartItems[itemIndex].quantity;
     }
 

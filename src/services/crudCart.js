@@ -33,7 +33,7 @@ export function updateCart(title, price, id, quantity, availableQuantity) {
   const cartItems = JSON.parse(localStorage.getItem('cartItems'));
   const itemIndex = cartItems.findIndex((item) => item.id === id);
   if (itemIndex !== -1) {
-    cartItems[itemIndex].quantity = { quantity, title, price, id, availableQuantity };
+    cartItems[itemIndex] = { quantity, title, price, id, availableQuantity };
     localStorage.setItem(
       'cartItems',
       JSON.stringify(cartItems),

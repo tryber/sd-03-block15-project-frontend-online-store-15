@@ -15,12 +15,21 @@ const cartTableHeader = () => (
 export class CartTable extends Component {
   constructor(props) {
     super(props);
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    this.state = { cartItems };
+    this.updateCartItems = this.updateCartItems.bind(this);
     this.cartTable = this.cartTable.bind(this);
     this.cartTableBody = this.cartTableBody.bind(this);
   }
 
+  updateCartItems() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    this.setState({ cartItems });
+  }
+
   cartTableBody() {
-    const { cartItems, updateCartItems, updateCartSize } = this.props;
+    const { updateCartSize } = this.props;
+    const { cartItems } = this.state;
     return (
       <tbody>
         {cartItems.map((item, index) => (
@@ -28,7 +37,7 @@ export class CartTable extends Component {
             key={item.id}
             item={item}
             index={index}
-            updateCartItems={updateCartItems}
+            updateCartItems={this.updateCartItems}
             updateCartSize={updateCartSize}
           />
         ))}

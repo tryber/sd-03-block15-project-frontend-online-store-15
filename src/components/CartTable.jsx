@@ -54,14 +54,10 @@ export class CartTable extends Component {
   totalCartPrice() {
     const { cartItems } = this.state;
     const totalCartPrice = cartItems
-      .reduce((accumulator, { quantity, price }) => quantity * price + accumulator, 0)
+      .reduce((accumulator, { quantity, price }) => (quantity * price) + accumulator, 0)
       .toFixed(2);
     // this.setState({totalCartPrice})
-    this.setState(() => {
-      return {
-        totalCartPrice,
-      };
-    });
+    this.setState(() => ({ totalCartPrice }));
   }
 
   cartTable() {

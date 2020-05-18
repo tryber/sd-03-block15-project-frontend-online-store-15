@@ -21,13 +21,25 @@ const inputCity = () => (
 
 const inputAddressNumber = () => (
   <div className="form-group">
-    <input type="number" className="form-control" id="inputAddressNumber" placeholder="Número" required />
+    <input
+      type="number"
+      className="form-control"
+      id="inputAddressNumber"
+      placeholder="Número"
+      required
+    />
   </div>
 );
 
 const inputComplement = () => (
   <div className="form-group">
-    <input type="text" className="form-control" id="inputComplement" placeholder="Complemento" required />
+    <input
+      type="text"
+      className="form-control"
+      id="inputComplement"
+      placeholder="Complemento"
+      required
+    />
   </div>
 );
 

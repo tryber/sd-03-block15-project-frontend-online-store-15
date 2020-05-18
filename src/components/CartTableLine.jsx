@@ -8,6 +8,8 @@ export class CartTableLine extends Component {
     super(props);
     this.deleteButton = this.deleteButton.bind(this);
     this.quantityCrud = this.quantityCrud.bind(this);
+    this.increaseButton = this.increaseButton.bind(this);
+    this.decreaseButton = this.decreaseButton.bind(this);
   }
 
   deleteButton() {
@@ -31,38 +33,57 @@ export class CartTableLine extends Component {
     );
   }
 
-  quantityCrud() {
+  decreaseButton() {
     const {
-      item: { title, price, id, quantity, availableQuantity },
+      item: { id },
       updateCartItems,
       updateCartSize,
     } = this.props;
     return (
+      <button
+        data-testid="product-decrease-quantity"
+        type="button"
+        onClick={() => {
+          subToCart(id);
+          updateCartItems();
+          updateCartSize();
+        }}
+        className="btn btn-link"
+      >
+        <FontAwesomeIcon icon={faMinus} />
+      </button>
+    );
+  }
+
+  increaseButton() {
+    const {
+      item: { title, price, id, availableQuantity },
+      updateCartItems,
+      updateCartSize,
+    } = this.props;
+    return (
+      <button
+        data-testid="product-increase-quantity"
+        type="button"
+        onClick={() => {
+          addToCart(title, price, id, availableQuantity);
+          updateCartItems();
+          updateCartSize();
+        }}
+        className="btn btn-link"
+      >
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
+    );
+  }
+
+  quantityCrud() {
+    const { item: { quantity } } = this.props;
+    return (
       <td data-testid="shopping-cart-product-quantity">
-        <button
-          data-testid="product-increase-quantity"
-          type="button"
-          onClick={() => {
-            addToCart(title, price, id, availableQuantity);
-            updateCartItems();
-            updateCartSize();
-          }}
-          className="btn btn-link"
-        >
-          <FontAwesomeIcon icon={faPlus} />
-        </button>
+        {this.increaseButton()}
         <span>{quantity}</span>
-        <button
-          data-testid="product-decrease-quantity"
-          type="button"
-          onClick={() => {
-            subToCart(id);
-            updateCartItems();
-          }}
-          className="btn btn-link"
-        >
-          <FontAwesomeIcon icon={faMinus} />
-        </button>
+        {this.decreaseButton()}
       </td>
     );
   }

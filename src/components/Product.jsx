@@ -9,7 +9,11 @@ export class Product extends Component {
   }
 
   addCartInput() {
-    const { product: { title, price, id, available_quantity: availableQuantity }, updateCartSize } = this.props;
+    const {
+      product:
+      { title, price, id, available_quantity: availableQuantity },
+      updateCartSize,
+    } = this.props;
     return (
       <input
         data-testid="product-add-to-cart"

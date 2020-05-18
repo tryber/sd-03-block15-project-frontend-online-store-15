@@ -5,3 +5,19 @@ body {
 .container {
   background: rgb(232, 233, 235);
 }
+
+.cart-icon {
+  color: #dc3545;
+  font-size: 45px;
+}
+
+.cart-size {
+  text-align: center;
+  top: 25px;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+}

@@ -9,20 +9,19 @@ export class SearchBox extends Component {
           id="search-input"
           className="form-control my-5 mx-3 my-sm-0 w-75"
           type="search"
-          placeholder="Search"
+          placeholder="Procurar"
           aria-label="Search"
           data-testid="query-input"
           value={searchText}
           onChange={onSearchTextChange}
         />
-
         <button
           className="btn btn-danger my-2 my-sm-0"
-          type="submit"
+          type="button"
           data-testid="query-button"
           onClick={handleClick()}
         >
-          Search
+          Procurar
         </button>
       </form>
     );

@@ -20,6 +20,8 @@ export default class MainPage extends Component {
       products: [],
     };
     this.searchProducts = this.searchProducts.bind(this);
+    this.searchProductsSorted = this.searchProductsSorted.bind(this);
+    this.sortButtons = this.sortButtons.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +37,38 @@ export default class MainPage extends Component {
       .then((products) => this.setState({ products }));
   }
 
+  searchProductsSorted(sort) {
+    const {
+      products: { query, filters },
+    } = this.state;
+    let q = query;
+    let category = '';
+    if (filters[0].values[0].id) category = filters[0].values[0].id;
+    if (!query) q = '';
+    api.getProductsSorted(category, q, sort).then((products) => this.setState({ products }));
+  }
+
+  sortButtons() {
+    return (
+      <div>
+        <button
+          type="button"
+          className="btn btn-danger mx-2 my-2 my-sm-0"
+          onClick={() => this.searchProductsSorted('price_asc')}
+        >
+          Menor Preço
+        </button>
+        <button
+          type="button"
+          className="btn btn-danger mx-2 my-2 my-sm-0"
+          onClick={() => this.searchProductsSorted('price_desc')}
+        >
+          Maior Preço
+        </button>
+      </div>
+    );
+  }
+
   render() {
     const { searchText, products, categories, selectedCategory } = this.state;
     const { updateCartSize } = this.props;
@@ -46,6 +80,8 @@ export default class MainPage extends Component {
             searchText={searchText}
             onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
           />
+          <h5 className="text-white">Ordenar</h5>
+          {this.sortButtons()}
         </Navbar>
         <div className="container">
           <div className="row">

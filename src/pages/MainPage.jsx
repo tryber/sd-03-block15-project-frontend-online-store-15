@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import SearchBox from '../components/SearchBox';
 import ProductList from '../components/ProductList';
 import Categories from '../components/Categories';
+import Navbar from '../components/Navbar';
 
 export default class MainPage extends Component {
   constructor(props) {
     super(props);
+
+    if (!localStorage.getItem('cartItems')) {
+      localStorage.setItem('cartItems', '[]');
+    }
+
     this.state = {
       categories: [],
       selectedCategory: '',
       searchText: '',
       products: [],
-      cartItems: [],
     };
     this.searchProducts = this.searchProducts.bind(this);
-    this.addToCart = this.addToCart.bind(this);
+    this.searchProductsSorted = this.searchProductsSorted.bind(this);
+    this.sortButtons = this.sortButtons.bind(this);
+    this.categorySelector = this.categorySelector.bind(this);
   }
 
   componentDidMount() {
@@ -32,46 +38,74 @@ export default class MainPage extends Component {
       .then((products) => this.setState({ products }));
   }
 
-  addToCart(id, title, price) {
-    const { cartItems } = this.state;
-    const itemIndex = cartItems.findIndex((item) => item.id === id);
-    if (itemIndex !== -1) {
-      const updatedCart = cartItems;
-      updatedCart[itemIndex].quantity += 1;
-      this.setState({ cartItems: updatedCart });
-    } else {
-      this.setState({
-        cartItems: [...cartItems,
-          { title, id, price, quantity: 1 }],
-      });
-    }
+  searchProductsSorted(sort) {
+    const { products: { query, filters } } = this.state;
+    let q = query;
+    let category = '';
+    if (filters[0].values[0].id) category = filters[0].values[0].id;
+    if (!query) q = '';
+    api.getProductsSorted(category, q, sort).then((products) => this.setState({ products }));
+  }
+
+  sortButtons() {
+    return (
+      <div>
+        <button
+          type="button"
+          className="btn btn-danger mx-2 my-2 my-sm-0"
+          onClick={() => this.searchProductsSorted('price_asc')}
+        >
+          Menor Preço
+        </button>
+        <button
+          type="button"
+          className="btn btn-danger mx-2 my-2 my-sm-0"
+          onClick={() => this.searchProductsSorted('price_desc')}
+        >
+          Maior Preço
+        </button>
+      </div>
+    );
+  }
+
+  categorySelector() {
+    const { categories, selectedCategory } = this.state;
+    return (
+      <div className="col-3">
+        <Categories
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={async (e) => {
+            await this.setState({ selectedCategory: e.target.value });
+            this.searchProducts();
+          }}
+        />
+      </div>
+    );
   }
 
   render() {
-    const { searchText, products, categories, selectedCategory, cartItems } = this.state;
+    const { searchText, products } = this.state;
+    const { updateCartSize } = this.props;
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-3">
-            <Categories
-              categories={categories}
-              selectedCategory={selectedCategory}
-              onCategoryChange={async (e) => {
-                await this.setState({ selectedCategory: e.target.value });
-                this.searchProducts();
-              }}
-            />
-          </div>
-          <div className="col">
-            <SearchBox
-              handleClick={() => this.searchProducts}
-              searchText={searchText}
-              onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
-            />
-            <Link to={{ pathname: '/shoppingCart', state: { cartItems } }} data-testid="shopping-cart-button">
-              Carrinho de compras
-            </Link>
-            <ProductList products={products} addToCart={this.addToCart} />
+      <div>
+        <Navbar>
+          <SearchBox
+            handleClick={() => this.searchProducts}
+            searchText={searchText}
+            onSearchTextChange={(e) => this.setState({ searchText: e.target.value })}
+          />
+          <h5 className="text-white">Ordenar</h5>
+          {this.sortButtons()}
+        </Navbar>
+        <div className="container">
+          <div className="row">
+            <div className="col-3">
+              {this.categorySelector()}
+            </div>
+            <div className="col">
+              <ProductList products={products} updateCartSize={updateCartSize} />
+            </div>
           </div>
         </div>
       </div>

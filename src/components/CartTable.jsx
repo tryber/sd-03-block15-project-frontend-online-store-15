@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CartTableLine from './CartTableLine';
 
 const cartTableHeader = () => (
   <thead>
@@ -19,16 +20,17 @@ export class CartTable extends Component {
   }
 
   cartTableBody() {
-    const { cartItems } = this.props;
+    const { cartItems, updateCartItems, updateCartSize } = this.props;
     return (
       <tbody>
         {cartItems.map((item, index) => (
-          <tr key={item.id}>
-            <th scope="row">{index}</th>
-            <td data-testid="shopping-cart-product-name">{item.title}</td>
-            <td>{item.price}</td>
-            <td data-testid="shopping-cart-product-quantity">{item.quantity}</td>
-          </tr>
+          <CartTableLine
+            key={item.id}
+            item={item}
+            index={index}
+            updateCartItems={updateCartItems}
+            updateCartSize={updateCartSize}
+          />
         ))}
       </tbody>
     );

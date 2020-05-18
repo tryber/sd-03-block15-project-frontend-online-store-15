@@ -7,15 +7,11 @@ export class RatingList extends Component {
     if (ratingList.length !== 0) {
       return (
         <div>
-          {ratingList.map(({ rate, comment, email, id }) => (
-            <div key={id} className="jumbotron jumbotron-fluid">
-              <div className="container">
-                <h1 className="display-4">{comment}</h1>
-                <Rater total={5} rating={rate} interactive={false} />
-                <p className="lead">
-                  {email}
-                </p>
-              </div>
+          {ratingList.map(({ rate, comment, email, ratingId }) => (
+            <div key={ratingId} className="jumbotron jumbotron-fluid bg-transparent">
+              <h1 className="display-4">{comment}</h1>
+              <Rater total={5} rating={rate} interactive={false} />
+              <p className="lead">{email}</p>
             </div>
           ))}
         </div>

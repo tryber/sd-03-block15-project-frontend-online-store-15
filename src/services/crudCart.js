@@ -2,7 +2,6 @@ export function addToCart(title, price, id, availableQuantity) {
   const cartItems = JSON.parse(localStorage.getItem('cartItems'));
   const itemIndex = cartItems.findIndex((item) => item.id === id);
   if (itemIndex !== -1) {
-    console.log(availableQuantity, cartItems[itemIndex].quantity);
     if (cartItems[itemIndex].quantity < availableQuantity) {
       cartItems[itemIndex].quantity += 1;
       localStorage.setItem(
@@ -30,12 +29,11 @@ export function subToCart(id) {
   }
 }
 
-export function updateCart(title, price, id, quantity) {
-  console.log(title, price, id, quantity);
+export function updateCart(title, price, id, quantity, availableQuantity) {
   const cartItems = JSON.parse(localStorage.getItem('cartItems'));
   const itemIndex = cartItems.findIndex((item) => item.id === id);
   if (itemIndex !== -1) {
-    cartItems[itemIndex] = { quantity, title, price, id };
+    cartItems[itemIndex].quantity = { quantity, title, price, id, availableQuantity };
     localStorage.setItem(
       'cartItems',
       JSON.stringify(cartItems),
@@ -43,7 +41,7 @@ export function updateCart(title, price, id, quantity) {
   } else {
     localStorage.setItem(
       'cartItems',
-      JSON.stringify([...cartItems, { title, id, price, quantity }]),
+      JSON.stringify([...cartItems, { title, id, price, quantity, availableQuantity }]),
     );
   }
 }

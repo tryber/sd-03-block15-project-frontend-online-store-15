@@ -22,7 +22,8 @@ export class CrudCartItem extends Component {
 
   addProductToCart() {
     const { quantity } = this.state;
-    this.setState({ quantity: quantity + 1 });
+    const { product: { availableQuantity } } = this.props;
+    if (quantity < availableQuantity) this.setState({ quantity: quantity + 1 });
   }
 
   subProductToCart() {
@@ -32,7 +33,7 @@ export class CrudCartItem extends Component {
 
   render() {
     const { quantity } = this.state;
-    const { product: { id, price, title }, updateCartSize } = this.props;
+    const { product: { id, price, title, availableQuantity }, updateCartSize } = this.props;
     return (
       <div>
         <h5>Quantidade</h5>
@@ -49,7 +50,7 @@ export class CrudCartItem extends Component {
           value="Adicionar ao Carrinho"
           className="btn btn-link"
           onClick={() => {
-            updateCart(title, price, id, quantity);
+            updateCart(title, price, id, quantity, availableQuantity);
             updateCartSize();
           }}
         />

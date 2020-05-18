@@ -29,7 +29,7 @@ export class Product extends Component {
   }
 
   render() {
-    const { product: { title, price, thumbnail, id, shipping } } = this.props;
+    const { product: { title, price, thumbnail, id, shipping, available_quantity: availableQuantity } } = this.props;
     return (
       <div className="col mb-3" data-testid="product">
         <div className="card text-center" style={{ width: '18rem' }}>
@@ -45,7 +45,7 @@ export class Product extends Component {
             <Link
               to={{
                 pathname: `/product/${id}`,
-                state: { title, thumbnail, price, shipping },
+                state: { title, thumbnail, price, shipping, availableQuantity },
               }}
               className="btn btn-link"
               data-testid="product-detail-link"

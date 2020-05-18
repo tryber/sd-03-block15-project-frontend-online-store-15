@@ -38,13 +38,13 @@ export class ProductDetail extends Component {
   }
 
   render() {
-    const { location: { state: { price, title } } } = this.props;
+    const { location: { state: { price, title, availableQuantity } } } = this.props;
     const { match: { params: { id } }, updateCartSize } = this.props;
     return (
       <div>
         <div className="container">
           {this.productCard()}
-          <CrudCartItem product={{ id, price, title }} updateCartSize={updateCartSize} />
+          <CrudCartItem product={{ id, price, title, availableQuantity }} updateCartSize={updateCartSize} />
           <Rating productId={id} />
         </div>
       </div>

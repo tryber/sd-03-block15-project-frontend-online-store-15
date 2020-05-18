@@ -15,6 +15,7 @@ export class CartTableLine extends Component {
   deleteButton() {
     const {
       updateCartItems,
+      updateCartSize,
       item: { id },
     } = this.props;
     return (
@@ -24,6 +25,7 @@ export class CartTableLine extends Component {
           onClick={() => {
             deleteCartItem(id);
             updateCartItems();
+            updateCartSize();
           }}
           className="btn text-danger"
         >

@@ -5,10 +5,10 @@ import CartTable from '../components/CartTable';
 
 export default class Checkout extends Component {
   render() {
-    const { location: { state: { cartItems } } } = this.props;
+    const { updateCartSize } = this.props;
     return (
       <div>
-        <CartTable cartItems={cartItems} />
+        <CartTable updateCartSize={updateCartSize} />
         <BuyerInfo />
         <PaymentForms />
         <button type="submit" className="btn btn-primary">

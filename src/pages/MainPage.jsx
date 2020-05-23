@@ -42,14 +42,14 @@ export default class MainPage extends Component {
     const { products: { query, filters } } = this.state;
     let q = query;
     let category = '';
-    if (filters[0].values[0].id) category = filters[0].values[0].id;
+    if (filters[0]) category = filters[0].values[0].id;
     if (!query) q = '';
     api.getProductsSorted(category, q, sort).then((products) => this.setState({ products }));
   }
 
   sortButtons() {
     return (
-      <div>
+      <form className="form-control-lg">
         <button
           type="button"
           className="btn btn-danger mx-2 my-2 my-sm-0"
@@ -64,23 +64,21 @@ export default class MainPage extends Component {
         >
           Maior Preço
         </button>
-      </div>
+      </form>
     );
   }
 
   categorySelector() {
     const { categories, selectedCategory } = this.state;
     return (
-      <div className="col-3">
-        <Categories
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryChange={async (e) => {
-            await this.setState({ selectedCategory: e.target.value });
-            this.searchProducts();
-          }}
-        />
-      </div>
+      <Categories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategoryClick={async (e) => {
+          await this.setState({ selectedCategory: e.target.id });
+          this.searchProducts();
+        }}
+      />
     );
   }
 
@@ -100,9 +98,7 @@ export default class MainPage extends Component {
         </Navbar>
         <div className="container">
           <div className="row">
-            <div className="col-3">
-              {this.categorySelector()}
-            </div>
+            <div className="col-3">{this.categorySelector()}</div>
             <div className="col">
               <ProductList products={products} updateCartSize={updateCartSize} />
             </div>
